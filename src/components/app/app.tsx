@@ -5,7 +5,7 @@ import Main from '../../pages/main/main';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import NotFound from '../../pages/not-found/not-found';
 import Offer from '../../pages/offer/offer';
-import ProtectedRoute from '../private-route/private-route';
+import PrivateRoute from '../private-route/private-route';
 
 type AppProps = {
   placesCount: number;
@@ -28,14 +28,14 @@ function App({ placesCount }: AppProps): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <ProtectedRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
               <Favorites />
-            </ProtectedRoute>
+            </PrivateRoute>
           }
         >
         </Route>
         <Route
-          path={`${AppRoute.Offer }/:id`}
+          path={`${AppRoute.Offer}/:id`}
           element={<Offer />}
         >
         </Route>
