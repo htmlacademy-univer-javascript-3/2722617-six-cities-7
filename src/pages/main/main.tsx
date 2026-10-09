@@ -1,12 +1,12 @@
 import Header from '../../components/header/header';
-import PlaceCard from '../../components/place-card/place-card';
-import { PlaceCardType } from '../../types/place-card';
+import PlacesList from '../../components/places-list/places-list';
+import { PlaceCard } from '../../types/place-card';
 
-type Props = {
-  placesCount: number;
+type MainProps = {
+  offers: PlaceCard[];
 };
 
-function Main({ placesCount }: Props): JSX.Element {
+function Main({ offers }: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header isLogoActive favoriteCount={3} />
@@ -80,20 +80,7 @@ function Main({ placesCount }: Props): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {Array.from({ length: placesCount }, (_, i) => (
-                  <PlaceCard
-                    key={`place-${i}`}
-                    title="Beautiful &amp; luxurious apartment at great location"
-                    type={PlaceCardType.Apartment}
-                    img="img/apartment-01.jpg"
-                    cost={120}
-                    rating={80}
-                    isPremium
-                    isBookmarked
-                  />
-                ))}
-              </div>
+              <PlacesList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
