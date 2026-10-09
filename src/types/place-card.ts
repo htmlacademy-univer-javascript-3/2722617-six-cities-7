@@ -9,6 +9,14 @@ export type PlaceCard = {
   rating: Rating;
   isPremium: boolean;
   isBookmarked: boolean;
+  city: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+      zoom: number;
+    };
+  };
 };
 
 export enum PlaceCardType {
