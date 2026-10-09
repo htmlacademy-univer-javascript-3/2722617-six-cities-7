@@ -28,7 +28,8 @@ function App({ offers, offerDetails }: AppProps): JSX.Element {
               <Favorites offers={offers} />
             </PrivateRoute>
           }
-        ></Route>
+        >
+        </Route>
         <Route path={`${AppRoute.Offer}/:id`} element={<Offer offerDetails={offerDetails} />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
