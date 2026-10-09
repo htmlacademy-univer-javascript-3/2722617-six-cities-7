@@ -1,5 +1,10 @@
 import type { PlaceCard } from '../../types/place-card';
 
+type PlaceCardProps = PlaceCard & {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+};
+
 function PlaceCard({
   img,
   cost,
@@ -8,9 +13,15 @@ function PlaceCard({
   rating,
   isPremium,
   isBookmarked,
-}: PlaceCard): JSX.Element {
+  onMouseEnter,
+  onMouseLeave,
+}: PlaceCardProps): JSX.Element {
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
