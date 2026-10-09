@@ -1,11 +1,10 @@
 import Header from '../../components/header/header';
 import PlaceCard from '../../components/place-card/place-card';
-import type { PlaceCardType } from '../../components/place-card/types';
-
+import { PlaceCardType } from '../../types/place-card';
 
 type Props = {
   placesCount: number;
-}
+};
 
 function Main({ placesCount }: Props): JSX.Element {
   return (
@@ -64,10 +63,21 @@ function Main({ placesCount }: Props): JSX.Element {
                   </svg>
                 </span>
                 <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
+                  <li
+                    className="places__option places__option--active"
+                    tabIndex={0}
+                  >
+                    Popular
+                  </li>
+                  <li className="places__option" tabIndex={0}>
+                    Price: low to high
+                  </li>
+                  <li className="places__option" tabIndex={0}>
+                    Price: high to low
+                  </li>
+                  <li className="places__option" tabIndex={0}>
+                    Top rated first
+                  </li>
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
@@ -80,6 +90,7 @@ function Main({ placesCount }: Props): JSX.Element {
                     cost={120}
                     rating={80}
                     isPremium
+                    isBookmarked
                   />
                 ))}
               </div>
@@ -89,8 +100,8 @@ function Main({ placesCount }: Props): JSX.Element {
             </div>
           </div>
         </div>
-      </main >
-    </div >
+      </main>
+    </div>
   );
 }
 

@@ -1,16 +1,4 @@
-import { PlaceCardType } from './types';
-
-type Rating = 0 | 20 | 40 | 60 | 80 | 100
-
-type PlaceCardProps = {
-  img: string;
-  cost: number;
-  title: string;
-  type: PlaceCardType;
-  rating: Rating;
-  isPremium?: boolean;
-  isBookmarked?: boolean;
-}
+import type { PlaceCard } from '../../types/place-card';
 
 function PlaceCard({
   img,
@@ -20,7 +8,7 @@ function PlaceCard({
   rating,
   isPremium,
   isBookmarked,
-}: PlaceCardProps): JSX.Element {
+}: PlaceCard): JSX.Element {
   return (
     <article className="cities__card place-card">
       {isPremium && (
@@ -30,7 +18,13 @@ function PlaceCard({
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={img} width="260" height="200" alt="Place image" />
+          <img
+            className="place-card__image"
+            src={img}
+            width="260"
+            height="200"
+            alt="Place image"
+          />
         </a>
       </div>
       <div className="place-card__info">
@@ -39,7 +33,10 @@ function PlaceCard({
             <b className="place-card__price-value">&euro;{cost}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${isBookmarked && 'place-card__bookmark-button--active'} button`} type="button">
+          <button
+            className={`place-card__bookmark-button ${isBookmarked && 'place-card__bookmark-button--active'} button`}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -57,7 +54,7 @@ function PlaceCard({
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
-    </article >
+    </article>
   );
 }
 
