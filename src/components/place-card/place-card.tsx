@@ -1,4 +1,4 @@
-import { PlaceCardType } from './place-card-type';
+import { PlaceCardType } from './types';
 
 type Rating = 0 | 20 | 40 | 60 | 80 | 100
 
