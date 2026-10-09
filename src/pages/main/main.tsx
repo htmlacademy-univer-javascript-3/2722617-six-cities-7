@@ -1,6 +1,6 @@
 import Header from '../../components/header/header';
 import PlaceCard from '../../components/place-card/place-card';
-import { PlaceCardType } from '../../components/place-card/types';
+import type { PlaceCardType } from '../../components/place-card/types';
 
 
 type Props = {
