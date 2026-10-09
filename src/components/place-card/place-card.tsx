@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import type { PlaceCard } from '../../types/place-card';
+import { AppRoute } from '../../const';
 
 type PlaceCardProps = PlaceCard & {
   onMouseEnter: () => void;
@@ -6,6 +9,7 @@ type PlaceCardProps = PlaceCard & {
 };
 
 function PlaceCard({
+  id,
   img,
   cost,
   title,
@@ -28,7 +32,7 @@ function PlaceCard({
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.Offer}/${id}`}>
           <img
             className="place-card__image"
             src={img}
@@ -36,7 +40,7 @@ function PlaceCard({
             height="200"
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -61,7 +65,9 @@ function PlaceCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Offer}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
