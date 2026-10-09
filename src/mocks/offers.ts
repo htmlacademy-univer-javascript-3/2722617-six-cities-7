@@ -1,9 +1,9 @@
-import { PlaceCard, PlaceCardType, Rating } from '../types/place-card';
+import { PlaceCard, PlaceCardType } from '../types/place-card';
 
 export const mockOffers: PlaceCard[] = [
   {
     id: 'offer-1',
-    img: 'https://example.com/images/apartment-1.jpg',
+    img: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     cost: 1200,
     title: 'Уютная квартира в центре города',
     type: PlaceCardType.Apartment,
@@ -13,7 +13,7 @@ export const mockOffers: PlaceCard[] = [
   },
   {
     id: 'offer-2',
-    img: 'https://example.com/images/room-1.jpg',
+    img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     cost: 800,
     title: 'Стильная комната в общежитии',
     type: PlaceCardType.Room,
@@ -23,7 +23,7 @@ export const mockOffers: PlaceCard[] = [
   },
   {
     id: 'offer-3',
-    img: 'https://example.com/images/apartment-2.jpg',
+    img: 'https://images.unsplash.com/photo-1780427670049-43aa7921e3f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     cost: 2500,
     title: 'Просторная квартира с видом на реку',
     type: PlaceCardType.Apartment,
@@ -33,7 +33,7 @@ export const mockOffers: PlaceCard[] = [
   },
   {
     id: 'offer-4',
-    img: 'https://example.com/images/room-2.jpg',
+    img: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     cost: 600,
     title: 'Комната рядом с университетом',
     type: PlaceCardType.Room,
