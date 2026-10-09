@@ -5,6 +5,7 @@ import { AppRoute } from '../../const';
 import OfferCardBody from '../offer-card/offer-card-body';
 
 type PlaceCardProps = PlaceCard & {
+  isActive: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 };
@@ -18,12 +19,13 @@ function PlaceCard({
   rating,
   isPremium,
   isBookmarked,
+  isActive,
   onMouseEnter,
   onMouseLeave,
 }: PlaceCardProps): JSX.Element {
   return (
     <article
-      className="cities__card place-card"
+      className={`cities__card place-card ${isActive ? 'place-card--active' : ''}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

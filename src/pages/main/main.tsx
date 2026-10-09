@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from '../../components/header/header';
@@ -9,6 +10,12 @@ type MainProps = {
 };
 
 function Main({ offers }: MainProps): JSX.Element {
+  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
+
+  const handleOfferHover = (offerId: string | null) => {
+    setActiveOfferId(offerId);
+  };
+
   return (
     <div className="page page--gray page--main">
       <Header isLogoActive favoriteCount={3} />
@@ -82,7 +89,7 @@ function Main({ offers }: MainProps): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <PlacesList offers={offers} />
+              <PlacesList offers={offers} activeOfferId={activeOfferId} onOfferTypeChange={handleOfferHover} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
