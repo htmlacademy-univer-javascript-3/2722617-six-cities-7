@@ -14,27 +14,31 @@ const ratingTitles: Record<number, string> = {
 function ReviewForm(): JSX.Element {
   const [review, setReview] = useState({ text: '', rating: 0 });
 
-  const isSubmitDisabled = review.rating === 0 || review.text.length < MIN_REVIEW_LENGTH || review.text.length > MAX_REVIEW_LENGTH;
+  const isSubmitDisabled =
+    review.rating === 0 ||
+    review.text.length < MIN_REVIEW_LENGTH ||
+    review.text.length > MAX_REVIEW_LENGTH;
 
-  const handleTextareaChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReview((prev) => ({ ...prev, text: e.target.value }));
-  }, []);
+  const handleTextareaChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setReview((prev) => ({ ...prev, text: e.target.value }));
+    },
+    [],
+  );
 
-  const handleRatingChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setReview((prev) => ({ ...prev, rating: Number(e.target.value) }));
-  }, []);
+  const handleRatingChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setReview((prev) => ({ ...prev, rating: Number(e.target.value) }));
+    },
+    [],
+  );
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: отправляем комментарий на сервер
   }, []);
 
   return (
-    <form
-      className="reviews__form form"
-      onSubmit={handleSubmit}
-      method="post"
-    >
+    <form className="reviews__form form" onSubmit={handleSubmit} method="post">
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -73,8 +77,10 @@ function ReviewForm(): JSX.Element {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set{' '}
-          <span className="reviews__star">rating</span> and describe your stay with at least{' '}
-          <b className="reviews__text-amount">{MIN_REVIEW_LENGTH} characters</b>.
+          <span className="reviews__star">rating</span> and describe your stay
+          with at least{' '}
+          <b className="reviews__text-amount">{MIN_REVIEW_LENGTH} characters</b>
+          .
         </p>
         <button
           className="reviews__submit form__submit button"

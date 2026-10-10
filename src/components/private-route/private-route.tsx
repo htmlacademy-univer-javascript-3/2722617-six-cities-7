@@ -5,16 +5,18 @@ type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;
   children: JSX.Element;
   redirectTo?: AppRoute;
-}
+};
 
-function ProtectedRoute({ authorizationStatus, redirectTo = AppRoute.Login, children }: PrivateRouteProps): JSX.Element {
-  return (
-    authorizationStatus === AuthorizationStatus.Auth ? (
-      children
-    ) : (
-      <Navigate to={redirectTo} />
-    )
+function PrivateRoute({
+  authorizationStatus,
+  redirectTo = AppRoute.Login,
+  children,
+}: PrivateRouteProps): JSX.Element {
+  return authorizationStatus === AuthorizationStatus.Auth ? (
+    children
+  ) : (
+    <Navigate to={redirectTo} />
   );
 }
 
-export default ProtectedRoute;
+export default PrivateRoute;
