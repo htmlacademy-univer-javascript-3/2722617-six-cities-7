@@ -4,18 +4,11 @@ import { useParams } from 'react-router-dom';
 import type { OfferDetail } from '../../types/offer';
 import Header from '../../components/header/header';
 import ReviewForm from '../../components/review-form/review-form';
+import { getRatingPercentage, getNumericRating } from '../../utils/rating';
 
 type OfferProps = {
   offerDetails: Record<string, OfferDetail>;
 };
-
-function getRatingPercentage(rating: number): string {
-  return `${rating}%`;
-}
-
-function getNumericRating(rating: number): string {
-  return (rating / 20).toFixed(1);
-}
 
 function Offer({ offerDetails }: OfferProps): JSX.Element {
   const { id } = useParams<{ id: string }>();
