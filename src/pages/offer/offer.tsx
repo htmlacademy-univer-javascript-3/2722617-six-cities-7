@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 import type { OfferDetail } from '../../types/offer';
 import Header from '../../components/header/header';
+import Map from '../../components/map/map';
+import NearPlacesList from '../../components/near-places-list/near-places-list';
 import ReviewForm from '../../components/review-form/review-form';
+import ReviewList from '../../components/reviews-list/review-list';
 import { getRatingPercentage, getNumericRating } from '../../utils/rating';
 
 type OfferProps = {
@@ -33,7 +35,7 @@ function Offer({ offerDetails }: OfferProps): JSX.Element {
     .filter((o) => o.id !== offer.id)
     .slice(0, 3);
 
-  const reviewsCount = offer.reviews.length;
+  const offerRatingPercentage = getRatingPercentage(offer.rating);
 
   return (
     <div className="page">
@@ -70,7 +72,7 @@ function Offer({ offerDetails }: OfferProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: getRatingPercentage(offer.rating) }} />
+                  <span style={{ width: offerRatingPercentage }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{getNumericRating(offer.rating)}</span>
@@ -121,95 +123,18 @@ function Offer({ offerDetails }: OfferProps): JSX.Element {
                   </p>
                 </div>
               </div>
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
-                <ul className="reviews__list">
-                  {offer.reviews.map((review) => (
-                    <li className="reviews__item" key={review.id}>
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Review avatar" />
-                        </div>
-                        <span className="reviews__user-name">
-                          {review.user.name}
-                        </span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{ width: getRatingPercentage(review.rating * 20) }} />
-                            <span className="visually-hidden">Rating</span>
-                          </div>
-                        </div>
-                        <p className="reviews__text">
-                          {review.comment}
-                        </p>
-                        <time className="reviews__time" dateTime={review.date}>
-                          {new Date(review.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                        </time>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <ReviewForm />
-              </section>
+              <ReviewList reviews={offer.reviews} />
+              <ReviewForm />
             </div>
           </div>
-          <section className="offer__map map" />
+          <section className="offer__map map">
+            <Map city={offer.city} offers={nearPlaces} selectedOfferId={offer.id} />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              {nearPlaces.map((place) => (
-                <article className="near-places__card place-card" key={place.id}>
-                  {place.isPremium && (
-                    <div className="place-card__mark">
-                      <span>Premium</span>
-                    </div>
-                  )}
-                  <div className="near-places__image-wrapper place-card__image-wrapper">
-                    <Link to={`/offer/${place.id}`}>
-                      <img className="place-card__image" src={place.img} width="260" height="200" alt="Place image" />
-                    </Link>
-                  </div>
-                  <div className="place-card__info">
-                    <div className="place-card__price-wrapper">
-                      <div className="place-card__price">
-                        <b className="place-card__price-value">&euro;{place.cost}</b>
-                        <span className="place-card__price-text">&#47;&nbsp;night</span>
-                      </div>
-                      {place.isBookmarked && (
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                          <svg className="place-card__bookmark-icon" width="18" height="19">
-                            <use xlinkHref="#icon-bookmark" />
-                          </svg>
-                          <span className="visually-hidden">In bookmarks</span>
-                        </button>
-                      )}
-                      {!place.isBookmarked && (
-                        <button className="place-card__bookmark-button button" type="button">
-                          <svg className="place-card__bookmark-icon" width="18" height="19">
-                            <use xlinkHref="#icon-bookmark" />
-                          </svg>
-                          <span className="visually-hidden">To bookmarks</span>
-                        </button>
-                      )}
-                    </div>
-                    <div className="place-card__rating rating">
-                      <div className="place-card__stars rating__stars">
-                        <span style={{ width: getRatingPercentage(place.rating) }} />
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <h2 className="place-card__name">
-                      <Link to={`/offer/${place.id}`}>{place.title}</Link>
-                    </h2>
-                    <p className="place-card__type">{place.type}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <NearPlacesList offers={nearPlaces} />
           </section>
         </div>
       </main>
